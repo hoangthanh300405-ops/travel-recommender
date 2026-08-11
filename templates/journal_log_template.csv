@@ -1,0 +1,6 @@
+entry_id,user_id,date,place_name,google_category,province_city,latitude,longitude,rating,note
+1,user_001,2026-03-10,Chùa Một Cột,place of worship,Hà Nội,21.0359,105.8339,4,Yên tĩnh sáng sớm ít khách
+2,user_001,2026-03-10,Hồ Gươm,park,Hà Nội,21.0285,105.8524,5,Đi dạo buổi tối rất đẹp
+3,user_001,2026-03-11,The Coffee House Đinh Tiên Hoàng,cafe,Hà Nội,21.0287,105.8530,4,View hồ đẹp giá hợp lý
+4,user_002,2026-03-15,Vinpearl Land,zoo,Nha Trang,12.2170,109.2270,5,Cả nhà đều thích khu safari
+5,user_002,2026-03-16,Bãi biển Nha Trang,beach,Nha Trang,12.2388,109.1967,4,Nước trong nhưng hơi đông

@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Large / regenerable artifacts — run the training script to recreate
+artifacts/cf_model.pkl
+
+# Raw data — not committed (license/size); download manually, see README
+data/raw/
+google_review_ratings.csv
+journal_log.csv
+meta-*.json.gz
+
+# OS
+.DS_Store

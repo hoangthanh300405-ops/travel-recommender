@@ -1,0 +1,8 @@
+pandas>=2.0
+numpy>=1.24
+scipy>=1.10
+scikit-learn>=1.3
+scikit-surprise>=1.1.3
+
+# Optional — only needed for src/02_category_crosswalk.py's embedding fallback
+sentence-transformers>=2.2

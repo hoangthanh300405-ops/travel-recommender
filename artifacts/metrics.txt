@@ -1,0 +1,33 @@
+Travel Recommender — Hybrid CF Evaluation (v3, review-findings-fixed)
+====================================================================
+Best SVD params: {'n_factors': 15, 'n_epochs': 40, 'lr_all': 0.005, 'reg_all': 0.05}
+Best hybrid weight (CF): 0.88  (tuned on validation split, 2-stage grid)
+
+CF-only (test)  RMSE=1.1080  MAE=0.7902
+Hybrid (test)   RMSE=1.1063  MAE=0.7855
+
+Ranking @5 — Hybrid vs. baselines (finding #3):
+  Hybrid               Precision@5=0.2583  Recall@5=0.9184  Coverage=100.00%
+  Popularity baseline  Precision@5=0.2380  Recall@5=0.8413  Coverage=100.00%
+  Random baseline      Precision@5=0.1757  Recall@5=0.6255  Coverage=100.00%
+  Avg candidate pool per evaluated user: 8.6 (min=5, max=18, K=5) — finding #2: with only 24 categories and a ~96%-dense matrix, this pool is often close to K itself, which inflates Recall@K relative to a large-catalog setting.
+
+Cold-start simulation (finding #4 + #9) — users fully excluded from CF training:
+  n_coldstart_users=150
+  CF-only  RMSE=1.3344  MAE=1.0294
+  Hybrid   RMSE=1.2128  MAE=0.8783  (best weight_cf=0.4)
+  -> Hybrid improves RMSE by 9.1% over CF-only for genuinely new users (content component's real value-add).
+
+Threshold sensitivity (finding #10) — Precision/Recall@5 across thresholds:
+  relevant_threshold=3.5  sim_threshold=0.0  Precision@5=0.2644  Recall@5=0.9212  Coverage=100.00%
+  relevant_threshold=3.5  sim_threshold=0.1  Precision@5=0.2644  Recall@5=0.9212  Coverage=100.00%
+  relevant_threshold=3.5  sim_threshold=0.2  Precision@5=0.2644  Recall@5=0.9216  Coverage=100.00%
+  relevant_threshold=4.0  sim_threshold=0.0  Precision@5=0.2582  Recall@5=0.9181  Coverage=100.00%
+  relevant_threshold=4.0  sim_threshold=0.1  Precision@5=0.2583  Recall@5=0.9184  Coverage=100.00%
+  relevant_threshold=4.0  sim_threshold=0.2  Precision@5=0.2582  Recall@5=0.9185  Coverage=100.00%
+  relevant_threshold=4.5  sim_threshold=0.0  Precision@5=0.2474  Recall@5=0.9100  Coverage=100.00%
+  relevant_threshold=4.5  sim_threshold=0.1  Precision@5=0.2476  Recall@5=0.9107  Coverage=100.00%
+  relevant_threshold=4.5  sim_threshold=0.2  Precision@5=0.2474  Recall@5=0.9107  Coverage=100.00%
+
+All content/item-similarity features built from TRAIN split only (87934 ratings) — no leakage from validation/test into the content or hybrid-weight-tuning steps.
+Ranking metrics (Precision/Recall@5, Coverage) computed on the held-out TEST split, candidates restricted to categories NOT seen in train for each user.
